@@ -94,10 +94,14 @@ int main(void)
 	GLint myColorLocation = glGetUniformLocation(program, "myColor");
 	printf("myColorLocation = %d\n", myColorLocation);
 
+	//Idem pour 'myPosition'
 	GLint myPositionLocation = glGetUniformLocation(program, "myPosition");
 	printf("myPositionLocation = %d\n", myPositionLocation);
 
 	float angle = 0.0F;
+	
+	//Active la synchronisation verticale
+	glfwSwapInterval(1);
 
 	//Tant que l'utilisateur ne requiert pas de fermer la fenêtre
 	while (!glfwWindowShouldClose(window))
