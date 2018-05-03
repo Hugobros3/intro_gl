@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <stdbool.h>
 #include <math.h>
+#include <stdio.h>
 
 int main(void)
 {

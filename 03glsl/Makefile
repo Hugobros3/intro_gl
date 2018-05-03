@@ -1,7 +1,7 @@
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
-LIBS=-lglfw -lGL -lGLEW
+LIBS=-lglfw -lGL -lGLEW -lm
 BINARY=demo
 else
 LIBS=-lglfw3 -lopengl32 -lgdi32 -lglew32
