@@ -1,4 +1,4 @@
-### Introduction à OpenGL: Matériel pour la formation
+# Introduction à OpenGL: Matériel pour la formation
 
 Slides et exemples de code en C pour accompagner la formation OpenGL de CSLabs
 
