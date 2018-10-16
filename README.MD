@@ -1,28 +1,32 @@
 # Introduction à OpenGL: Matériel pour la formation
-
-Slides et exemples de code en C pour accompagner la formation OpenGL de CSLabs
-
 ![alt text](screen.png "kom c bo")
 
-## Compilation sous Linux (Debian & dérivés)
+## Slides
+
+Disponibles au format ODT dans ce repo
+
+## Traces RenderDoc
+
+Trop lourdes pour aller sur github, elles sont dispo sur
+http://xol.io/random/traces
+
+## Exemples de code
+
+### Compilation sous Linux (Debian & dérivés)
 
 Dépendances: 
 
- * gcc
- * make
- * glfw3, glew, headers opengl
-
-TODO: apt-get <touslestrucs>
+ * Sur une debian fraiche: `apt install build-essential libglfw-dev libglew-dev libglew-dbg`
 
 Pour chaque exemple, se placer dans son répertoire ( `cd 0Xmachintruc` ), et taper `make`.
 `./demo` lance l'application
 	
-## Compilation des exemples sous Windows
+### Compilation des exemples sous Windows
 
 Dépendances: 
 
- * mingw-64 (gcc, make)
- * glfw3, glew, headers opengl
+ * mingw-64 (fourni gcc, make)
+ * glfw3, glew, headers opengl à copier dans le dossier d'installation de mingw-64
 	
 TODO: tester sur une machine et tout installer from scratch
 

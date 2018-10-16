@@ -130,13 +130,8 @@ int main(void)
 	glVertexAttribPointer(vertexInLocation, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), NULL); // L'entrée d'atributs 0 renverra des couples de 3 valeurs (x,y) au format float, depuis le buffer 'vbo'
 	glVertexAttribPointer(texCoordInLocation, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 3 * sizeof(float)); // L'entrée d'atributs 1 renverra des couples de 2 valeurs (x,y) au format float, depuis le buffer 'vbo'
 	
-	//On récupère l'emplacement de la variable uniforme "myColor"
 	GLint viewMatrixLocation = glGetUniformLocation(program, "viewMatrix");
 	printf("viewMatrixLocation = %d\n", viewMatrixLocation);
-
-	//Idem pour 'myPosition'
-	GLint myPositionLocation = glGetUniformLocation(program, "myPosition");
-	printf("myPositionLocation = %d\n", myPositionLocation);
 
 	float angle = 0.0F;
 	
@@ -163,7 +158,7 @@ int main(void)
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
 	}
 	
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	
 	//Tant que l'utilisateur ne requiert pas de fermer la fenêtre
@@ -176,6 +171,7 @@ int main(void)
 		
 		//viewMatrix = m4_mul(viewMatrix, m4_perspective(3.14159 / 2.F, 1.f, 0.1f, 100.0f));
 		
+		angle = angle + 0.1f;
 		viewMatrix = m4_mul(m4_perspective(3.14159 / 1.F, 1.0f, 0.1f, 150.0f), viewMatrix);
 		
 		viewMatrix = m4_mul(viewMatrix, m4_translation(vec3(0.0f, 0.0f, -100.0f)));
@@ -185,7 +181,6 @@ int main(void)
 		viewMatrix = m4_mul(viewMatrix, m4_rotation_x(angle * 0.2f));
 		
 		//viewMatrix = m4_mul(viewMatrix, m4_look_at(vec3(0.0f, 0.0f, 0.0f), vec3(-5.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-		
 		//printf("viewMatrix: %f %f %f %f", viewMatrix.m[0][0], viewMatrix.m[0][1], viewMatrix.m[0][2], viewMatrix.m[0][3]);
 		
 		// Spécifie une couleur pour effacer l'écran, puis efface l'écran
@@ -196,12 +191,11 @@ int main(void)
 
 		glUniformMatrix4fv(viewMatrixLocation, 1, false, viewMatrix.m[0]);
 
-		angle = angle + 0.1f;
-		glUniform2f(myPositionLocation, sin(angle) * 0.4f, cos(angle) * 0.4f);
-
 		glBindVertexArray(vao); // La configuration 'vao'
+		
+		// (On dessine chaque face séparément pour changer la texture entre chaque)
 		for(int f = 0; f < 6; f++) {
-			glBindTexture(GL_TEXTURE_2D, (texture[f]));
+			glBindTexture(GL_TEXTURE_2D, texture[f]);
 			glDrawArrays(GL_TRIANGLES, f * 6, 6); // Dessiner 6 points sous forme de triangles ( donc deux triangle formé de 3 pts chacuns 
 		}
 
